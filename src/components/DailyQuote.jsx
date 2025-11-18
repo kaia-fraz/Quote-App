@@ -1,6 +1,6 @@
 import { Heart } from "lucide-react";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion} from "framer-motion";
 
 export default function DailyQuote({ onExit }) {
     const fakeQuote = {
@@ -16,7 +16,7 @@ export default function DailyQuote({ onExit }) {
       exit={{ opacity: 0, y: 400 }} // the "fall down" animation
       transition={{ duration: 0.8, ease: "easeInOut" }}
       onClick={onExit}
-      className="flex flex-col justify-center items-center p-6 bg-blue-500/10 shadow-xl rounded-xl cursor-pointer
+      className="flex flex-col justify-center items-center p-6 mx-5 bg-blue-500/10 shadow-xl rounded-xl cursor-pointer
       border border-l-blue-500/20 border-t-blue-500/20
       border-r-black border-b-black
       backdrop-blur-md
