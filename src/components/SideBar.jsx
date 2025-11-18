@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 
 export default function SideBar() {
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
 
   return (
     <>
@@ -17,17 +17,17 @@ export default function SideBar() {
       </button>
       {open && (
         <div className="mt-3 p-4 w-34 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 shadow-xl flex flex-col gap-3">
-          <nav className="flex flex-col gap-2">
-            <Link to="/" className="flex items-center gap-2">
-              <HomeIcon className="w-5 h-5 text-white" />
+          <nav className="flex flex-col gap-2 text-white ">
+            <Link to="/" className="flex items-center gap-2 hover:text-blue-400">
+              <HomeIcon className="w-5 h-5" />
               <span>Home</span>
             </Link>
-            <Link to="/settings" className="flex items-center gap-2">
-              <SettingsIcon className="w-5 h-5 text-white" />
+            <Link to="/settings" className="flex items-center gap-2 hover:text-blue-400">
+              <SettingsIcon className="w-5 h-5" />
               <span>Settings</span>
             </Link>
-            <Link to="/favorites" className="flex items-center gap-2">
-              <HeartIcon className="w-5 h-5 text-white" />
+            <Link to="/favorites" className="flex items-center gap-2 hover:text-blue-400">
+              <HeartIcon className="w-5 h-5" />
               <span>Favorites</span>
             </Link>
           </nav>

@@ -1,15 +1,17 @@
 import { useState } from "react";
-import SideBar from "../components/SideBar.jsx";
-import QuoteCard from "../components/QuoteCard.jsx"; 
+import DailyQuote from "../components/DailyQuote.jsx"; 
 import Footer from "../components/Footer.jsx";
+import SearchBar from "../components/SearchBar.jsx";
 
 export default function Home() {
     return (
     <> 
       <div className="flex flex-col h-dvh bg-gradient-to-br from-slate-800 to-slate-950 text-white">
-
-        <div className="flex-1 flex items-center justify-center">
-          <QuoteCard />
+        <div className="flex p-4 justify-end">
+          <SearchBar />
+        </div>
+        <div className="flex flex-1 items-center justify-center">
+          <DailyQuote />
         </div>
         
         <footer className="p-4 text-center">

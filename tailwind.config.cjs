@@ -5,6 +5,10 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      'abril': ['Abril Fatface', 'cursive'],
+      'montserrat': ['Montserrat', 'sans-serif'],
+    },
   },
   plugins: [],
 }
