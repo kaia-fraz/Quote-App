@@ -32,7 +32,7 @@ export default function SideBar() {
             </Link>
             <Link to="/own-quotes" className="flex items-center gap-2 hover:text-blue-400">
               <Plus className="w-5 h-5" />
-              <span>Your Quotes</span>
+              <span>Add</span>
             </Link>
           </nav>
         </div>
