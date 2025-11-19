@@ -3,7 +3,7 @@ import AddQuote from "../components/AddQuote.jsx";
 export default function OwnQuotes() {
     return (
     <> 
-        <div className="min-h-screen bg-gradient-to-br from-slate-800 to-slate-950 text-white p-6 flex flex-col">
+        <div className="min-h-screen bg-gradient-to-br from-slate-800 to-slate-950 text-white p-4 flex flex-col">
             <div className="flex justify-end">
                 <AddQuote />
             </div>

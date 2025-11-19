@@ -5,15 +5,15 @@ export default function AddQuote() {
     const [open, setOpen] = useState(false);
 
     return (
-        <div className="flex flex-col items-center">
+        <div className="relative w-80">
             <button
                 onClick={() => setOpen(!open)}
-                className="p-3 rounded-full bg-blue-500/10 backdrop-blur-md hover:bg-white/20 transition"
+                className="absolute top-0 right-0 p-3 transition "
             >
                 {open ? <X className="text-white" /> : <Plus className="text-white" />}
             </button>
             <div className={`
-                mt-3 p-4 w-80 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 shadow-xl 
+                mt-12 p-4 w-80 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 shadow-xl 
                 transition-all duration-300
                 ${open ? "opacity-100 visible" : "opacity-0 invisible"}
             `}>

@@ -12,8 +12,8 @@ export default function DailyQuote({ onExit }) {
     <>
        <motion.div
       initial={{ opacity: 1, y: 0 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 400 }} // the "fall down" animation
+
+      exit={{ opacity: 0, y: 400 }} 
       transition={{ duration: 0.8, ease: "easeInOut" }}
       onClick={onExit}
       className="flex flex-col justify-center items-center p-6 mx-5 bg-blue-500/10 shadow-xl rounded-xl cursor-pointer
