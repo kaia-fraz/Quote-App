@@ -11,28 +11,28 @@ export default function SideBar() {
       <div className="absolute top-4 left-4 z-50">
       <button
         onClick={() => setOpen(!open)}
-        className="p-3 rounded-lg bg-blue-500/10 backdrop-blur-md hover:bg-white/20 transition"
+        className="p-3 rounded-full backdrop-blur-md hover:bg-blue-500/20 transition"
       >
         {open ? <X className="text-white" /> : <Menu className="text-white" />}
       </button>
       {open && (
-        <div className="mt-3 p-4 w-34 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 shadow-xl flex flex-col gap-3">
+        <div className="mt-3 p-4 w-34 rounded-xl bg-blue-500/10 backdrop-blur-md border border-white/10 shadow-xl flex flex-col gap-3">
           <nav className="flex flex-col gap-2 text-white ">
-            <Link to="/" className="flex items-center gap-2 hover:text-blue-400">
+            <Link to="/" className="flex items-center gap-2 hover:text-gray-300">
               <HomeIcon className="w-5 h-5" />
               <span>Home</span>
             </Link>
-            <Link to="/settings" className="flex items-center gap-2 hover:text-blue-400">
-              <SettingsIcon className="w-5 h-5" />
-              <span>Settings</span>
+            <Link to="/settings" className="flex items-center gap-2 hover:text-gray-300">
+              <SettingsIcon className="w-5 h-5 " />
+              <span >Settings</span>
             </Link>
-            <Link to="/favorites" className="flex items-center gap-2 hover:text-blue-400">
+            <Link to="/favorites" className="flex items-center gap-2 hover:text-gray-300">
               <HeartIcon className="w-5 h-5" />
               <span>Favorites</span>
             </Link>
-            <Link to="/own-quotes" className="flex items-center gap-2 hover:text-blue-400">
+            <Link to="/own-quotes" className="flex items-center gap-2 hover:text-gray-300">
               <Plus className="w-5 h-5" />
-              <span>Add</span>
+              <span >Add</span>
             </Link>
           </nav>
         </div>

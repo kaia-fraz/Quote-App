@@ -4,13 +4,14 @@ import SearchBar from "../components/SearchBar.jsx";
 import QuoteFeed from "../components/QuoteFeed.jsx";
 import DailyQuote from "../components/DailyQuote.jsx";
 import { AnimatePresence } from "framer-motion";
+import BackgroundWrapper from "../../Style/Background.jsx";
 
 export default function Home() {
   const [showDailyQuote, setShowDailyQuote] = useState(true);
 
     return (
-      <div className="flex flex-col h-dvh bg-gradient-to-br from-slate-800 to-slate-950 text-white">
-        <div className="flex p-4 justify-end">
+      <BackgroundWrapper>
+        <div className="fixed top-4 right-4 z-50">
           <SearchBar />
         </div>
         <div className="flex-1 flex overflow-hidden">
@@ -28,9 +29,9 @@ export default function Home() {
             </div>
         </div>
 
-      <footer className="p-4 text-center">
-        <Footer />
-      </footer>
-    </div>
+        <footer className="p-4 text-center">
+          <Footer />
+        </footer>
+      </BackgroundWrapper>
   );
 }

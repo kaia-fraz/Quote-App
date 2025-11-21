@@ -4,8 +4,16 @@ import Home from "./pages/Home.jsx";
 import Settings from "./pages/Settings.jsx";
 import Favorites from "./pages/Favorites.jsx";
 import OwnQuotes from "./pages/OwnQuotes.jsx";
+import { useEffect, useState } from "react";
+
 
 export default function App() {
+  const selectedTheme = localStorage.getItem("app-theme") || "theme-default";
+
+  useEffect(() => {
+    document.documentElement.className = selectedTheme;
+  }, [selectedTheme]);
+
   return (
     <div className="min-h-screen">
       <SideBar />

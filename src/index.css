@@ -1,2 +1,79 @@
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
+
+
+.theme-default {
+    --bg1: #2f2d68;      /* gradient start */
+    --bg2: #070422;      /* gradient end   */
+    --text: white; 
+    --card: #234dbf;
+    --cardOpaque: #2866d933; /* color + opacity */
+    --border: rgba(255,255,255,0.1);
+    --hover: #3b82f6;
+}
+
+.theme-purple {
+    --bg1: #4c1d95;
+    --bg2: #160632;
+
+    --text: #ffffff;
+
+    --card: #6d28d9;
+    --cardOpaque: #6d28d933;
+
+    --border: #ffffff22;
+    --hover: #a78bfa;
+}
+
+
+.theme-green {
+    --bg1: #064e3b;
+    --bg2: #011a14;
+
+    --text: #ffffff;
+
+    --card: #059669;
+    --cardOpaque: #05966933;
+
+    --border: #ffffff22;
+    --hover: #34d399;
+}
+
+.theme-red {
+    --bg1: #7f1d1d;
+    --bg2: #2c0404;
+
+    --text: #ffffff;
+
+    --card: #dc2626;
+    --cardOpaque: #dc262633;
+
+    --border: #ffffff22;
+    --hover: #f87171;
+}
+
+.theme-yellow {
+    --bg1: #78350f;
+    --bg2: #45260a;
+
+    --text: #ffffff;
+
+    --card: #d97706;
+    --cardOpaque: #d9770633;
+
+    --border: #ffffff22;
+    --hover: #fbbf24;
+}
+
+.theme-blue {
+    --bg1: #1e3a8a;
+    --bg2: #081232;
+
+    --text: #ffffff;
+
+    --card: #3b82f6;
+    --cardOpaque: #3b82f633;
+
+    --border: #ffffff22;
+    --hover: #60a5fa;
+}

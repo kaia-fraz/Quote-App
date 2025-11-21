@@ -1,6 +1,11 @@
-export default function BackgroundW ({ children}) {
+export default function BackgroundWrapper ({ children}) {
 return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-800 to-slate-950 text-white p-6 flex flex-col justify-center items-center">
+    <div className="min-h-screen text-white p-6 flex flex-col justify-center items-center"
+    style={{
+        background: `linear-gradient(to bottom right, var(--bg1), var(--bg2))`,
+        color: "var(--text)",
+    }}
+    >
         {children}
     </div>
 )
