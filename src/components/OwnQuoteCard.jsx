@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function QuoteCard({ quote, onRemove }) {
+export default function OwnQuoteCard({ quote, onRemove }) {
   return (
     <div className="bg-white p-4 rounded-lg shadow flex justify-between items-start"
     style={{

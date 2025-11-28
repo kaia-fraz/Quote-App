@@ -1,39 +1,29 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState, useCallback } from "react";
 
-export default function UseQuote() {
+// Custom hook: fetch a random quote and expose state + refetch
+export default function useQuote() {
   const [quote, setQuote] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  async function fetchQuote() {
+  const fetchQuote = useCallback(async () => {
+    setLoading(true);
+    setError(null);
     try {
-      setLoading(true);
-      setError(null);
-
-      const res = await fetch("https://api.quotable.io/random");
-
-      if (!res.ok) {
-        throw new Error("Failed to fetch quote");
-      }
-
+      const res = await fetch("https://quotastic-whispers.vercel.app/api/random");
+      if (!res.ok) throw new Error(`Request failed (${res.status})`);
       const data = await res.json();
       setQuote(data);
-    } catch (err) {
-      console.error("Error fetching quote:", err);
-      setError("Failed to load quote. Try again.");
+    } catch (e) {
+      setError(e.message || "Failed to fetch quote");
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
 
   useEffect(() => {
     fetchQuote();
-  }, []);
+  }, [fetchQuote]);
 
-  return {
-    quote,
-    loading,
-    error,
-    fetchQuote,
-  };
+  return { quote, loading, error, fetchQuote };
 }

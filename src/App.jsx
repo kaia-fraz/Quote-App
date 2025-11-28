@@ -5,6 +5,8 @@ import Settings from "./pages/Settings.jsx";
 import Favorites from "./pages/Favorites.jsx";
 import OwnQuotes from "./pages/OwnQuotes.jsx";
 import { useEffect, useState } from "react";
+import SignUp from "./pages/SignUp.jsx";
+import SignIn from "./pages/SignIn.jsx";
 
 
 export default function App() {
@@ -23,6 +25,8 @@ export default function App() {
           <Route path="/settings" element={<Settings />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/own-quotes" element={<OwnQuotes />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/sign-in" element={<SignIn />} />
         </Routes>
 
       </main>

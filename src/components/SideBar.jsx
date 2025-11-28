@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Home as HomeIcon, Menu, Settings as SettingsIcon, Heart as HeartIcon, X, Plus } from "lucide-react";
+import { Home as HomeIcon, Menu, Settings as SettingsIcon, Heart as HeartIcon, X, Plus, CircleUserRound } from "lucide-react";
 import { Link } from "react-router-dom";
 
 
@@ -33,6 +33,10 @@ export default function SideBar() {
             <Link to="/own-quotes" className="flex items-center gap-2 hover:text-gray-300">
               <Plus className="w-5 h-5" />
               <span >Add</span>
+            </Link>
+            <Link to="/sign-up" className="flex items-center gap-2 hover:text-gray-300">
+              <CircleUserRound className="w-5 h-5" />
+              <span >Sign Up</span>
             </Link>
           </nav>
         </div>
