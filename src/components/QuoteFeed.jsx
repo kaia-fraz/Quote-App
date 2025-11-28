@@ -1,32 +1,40 @@
 import useQuote from "../hooks/useQuote";
+import { Heart } from "lucide-react";
+import { motion } from "framer-motion";
 
-export default function QuoteFeed() {
-    const { quote, loading, error, fetchQuote } = useQuote();
+export default function QuoteFeed({ onExit, fetchQuote }) {
+    const { quote, loading, error } = useQuote();
     return (
         <>
-            <div>
-                {loading && <p>Loading...</p>}
-                {error && <p>{error}</p>}
-            </div>
-            <div className="flex flex-col justify-center items-center p-6 mx-5 shadow-xl rounded-xl cursor-pointer backdrop-blur-md"
+            <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            onClick={() => {
+                onExit;
+                fetchQuote;
+            }}
+            className="flex flex-col justify-center items-center p-6 mx-5 shadow-xl rounded-xl cursor-pointer backdrop-blur-md"
             style={{
                 background: "var(--cardOpaque)",
                 borderColor: "var(--border)",
                 color: "var(--text)",
             }}>
+            <div>
+                {loading && <p>Loading...</p>}
+                {error && <p>{error}</p>}
+            </div>
                 {quote && !loading && (
                     <div>
                         <h2 className="text-2xl font-bold mb-4">{quote.content}</h2>
                         <p className="text-gray-400">- {quote.author}</p>
                     </div>
                 )}
-                <button
-                    onClick={fetchQuote}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-xl shadow hover:bg-blue-700 transition"
-                >
-                    New Quote
-                </button>
-            </div>
+                <Heart className="w-5 h-5 mt-2 cursor-pointer hover:text-red-500" onClick={fetchQuote} />
+            <p className="text-center mt-4 text-sm text-gray-400">
+                Tap the button below to fetch a new quote
+            </p>
+            </motion.div>
             </>
     );
 }
