@@ -1,7 +1,7 @@
 import {useState} from "react";
 import { Plus, X } from "lucide-react";
 
-export default function AddQuote({ onAdd}) {
+export default function AddQuote({ onAdd }) {
     const [open, setOpen] = useState(false);
     const [content, setContent] = useState("");
     const [author, setAuthor] = useState("");

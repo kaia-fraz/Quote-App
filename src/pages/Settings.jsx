@@ -1,6 +1,7 @@
 import BackgroundWrapper from "../../Style/Background";
 import ThemeSwitcher from "../components/ThemeSwitcher";
 import { useEffect, useState } from "react";
+import Categories from "../components/categories.jsx";
 
 export default function Settings() {
     const [theme, setTheme] = useState("theme-default");
@@ -27,6 +28,7 @@ export default function Settings() {
             <ThemeSwitcher changeTheme={changeTheme} />
             <h1 className="text-3xl font-bold mb-4">Settings</h1>
             <p>Manage your settings here.</p>
+            <Categories />
         </BackgroundWrapper>
     </>
     );

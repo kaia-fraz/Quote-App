@@ -1,5 +1,5 @@
 import AddQuote from "../components/AddQuote.jsx";
-import QuoteCard from "../components/QuoteCard.jsx";
+import OwnQuoteCard from "../components/OwnQuoteCard.jsx";
 import BackgroundWrapper from "../../Style/Background.jsx";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -39,7 +39,7 @@ export default function OwnQuotes() {
 
                     <div className="mt-4 space-y-4">
                         {quotes.map(quote => (
-                            <QuoteCard
+                            <OwnQuoteCard
                                 key={quote.id}
                                 quote={quote}
                                 onRemove={() => handleRemove(quote.id)}
