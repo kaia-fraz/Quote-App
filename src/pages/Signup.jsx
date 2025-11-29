@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import signUp from "../accounts/auth.js";
 import BackgroundWrapper from "../../Style/Background.jsx";
 
 export default function SignUp() {
@@ -18,7 +19,12 @@ export default function SignUp() {
       setError("Passwords do not match");
       return;
     }
-    console.log("User signed up:", form);
+    const result = signUp(form.email, form.password);
+
+    if (result.error) {
+      setError(result.error);
+      return;
+    }
     navigate("/sign-in");
   };
 

@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import BackgroundWrapper from "../../Style/Background.jsx";
+import signIn from "../accounts/auth.js";
+import { useAuth } from "../context/AuthContext.jsx";
 
 export default function SignIn() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const { signIn: authenticate } = useAuth();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -19,7 +22,13 @@ export default function SignIn() {
       setError("Email and password are required");
       return;
     }
-    console.log("User signed in:", form);
+    const result = signIn(form.email, form.password);
+
+    if (result.error) {
+      setError(result.error);
+      return;
+    }
+    authenticate();
     navigate("/");
   };
 
