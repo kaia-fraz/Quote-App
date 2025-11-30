@@ -14,7 +14,6 @@ export function saveUsers(users) {
 export function signUp(email, password) {
   const users = loadUsers();
 
-  // Check if email exists already
   if (users.some(u => u.email === email)) {
     return { error: "Email already in use" };
   }
@@ -22,7 +21,7 @@ export function signUp(email, password) {
   const newUser = {
     id: uuidv4(),
     email,
-    password, // optional: hash this later
+    password, 
     data: {
       quotes: [], // you can attach anything here (favorites, settings, saved items)
     }
@@ -31,7 +30,6 @@ export function signUp(email, password) {
   users.push(newUser);
   saveUsers(users);
 
-  // automatically log in after signup
   localStorage.setItem("currentUser", newUser.id);
 
   return { user: newUser };

@@ -14,16 +14,17 @@ export default function QuoteFeed({ onExit, fetchQuote }) {
                 onExit;
                 fetchQuote;
             }}
-            className="flex flex-col justify-center items-center p-6 mx-5 shadow-xl rounded-xl cursor-pointer backdrop-blur-md"
-            style={{
-                background: "var(--cardOpaque)",
-                borderColor: "var(--border)",
-                color: "var(--text)",
-            }}>
-            <div>
-                {loading && <p>Loading...</p>}
-                {error && <p>{error}</p>}
-            </div>
+            className="flex flex-col justify-center items-center p-6 mx-5 shadow-xl rounded-xl cursor-pointer backdrop-blur-md
+            bg-blue-500/10 shadow-xl rounded-xl cursor-pointer
+                border border-l-blue-500/20 border-t-blue-500/20
+                border-r-black border-b-black
+                backdrop-blur-md
+                hover:bg-blue-500/20 transition"
+            >
+                <div>
+                    {loading && <p>Loading...</p>}
+                    {error && <p>{error}</p>}
+                </div>
                 {quote && !loading && (
                     <div>
                         <h2 className="text-2xl font-bold mb-4">{quote.content}</h2>

@@ -2,12 +2,13 @@ import React from "react";
 
 export default function OwnQuoteCard({ quote, onRemove }) {
   return (
-    <div className="bg-white p-4 rounded-lg shadow flex justify-between items-start"
-    style={{
-            background: "var(--cardOpaque)",
-            borderColor: "var(--border)",
-            color: "var(--text)",
-        }}>
+    <div className="p-4 flex justify-between items-start
+      bg-blue-500/10 shadow-xl rounded-xl cursor-pointer
+      border border-l-blue-500/20 border-t-blue-500/20
+      border-r-black border-b-black
+      backdrop-blur-md
+      hover:bg-blue-500/20 transition">
+
       <div>
         <p className="text-lg italic">“{quote.content}”</p>
         <p className="mt-2 text-sm">— {quote.author}</p>

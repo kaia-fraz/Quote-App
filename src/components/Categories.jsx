@@ -49,7 +49,10 @@ export default function QuoteCategories({ onChange }) {
 
 	return (
 		<section className="mt-6">
-			<div className="p-6 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 shadow-xl text-white">
+			<div className="p-6 bg-blue-500/10 shadow-xl rounded-xl cursor-pointer
+                border border-l-blue-500/20 border-t-blue-500/20
+                border-r-black border-b-black
+                backdrop-blur-md">
 				<h3 className="text-xl font-semibold mb-3">Quote Categories</h3>
 				<p className="text-sm text-white/70 mb-4">Choose categories you like. We’ll use these to filter quotes.</p>
 

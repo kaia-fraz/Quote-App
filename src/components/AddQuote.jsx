@@ -41,7 +41,7 @@ export default function AddQuote({ onAdd }) {
                 {open ? <X className="text-white" /> : <Plus className="text-white" />}
             </button>
             <form onSubmit={handleSubmit} className={`
-                absolute top-16 right-4 p-4 w-80 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 shadow-xl 
+                absolute top-16 right-4 p-4 w-80 shadow-xl rounded-xl bg-blue-500/10 backdrop-blur-md border border-white/10 shadow-xl flex flex-col gap-3 
                 transition-all duration-300 origin-top-right
                 ${open ? "opacity-100 visible" : "opacity-0 invisible"
             }`}>
