@@ -1,11 +1,19 @@
 import { useState } from "react";
 import { Palette } from "lucide-react";
+import { getCurrentUser, updateUserTheme } from "../accounts/auth";
 
 export default function ThemeSwitcher({ changeTheme }) {
+    const user = getCurrentUser();
+    const [theme, setTheme] = useState(user?.data?.theme || "theme-default");
     const [open, setOpen] = useState(false);
-    const setTheme = (theme) => {
-        localStorage.setItem("app-theme", theme);
-    }
+
+     function handleThemeSelect(themeName) {
+    setTheme(themeName);
+    localStorage.setItem("app-theme", themeName);
+    if (user) updateUserTheme(themeName);
+    setOpen(false);
+  }
+
 
     return (
         <div className="fixed top-6 right-6 z-50">

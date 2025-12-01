@@ -7,19 +7,28 @@ import OwnQuotes from "./pages/OwnQuotes.jsx";
 import { useEffect, useState } from "react";
 import SignUp from "./pages/SignUp.jsx";
 import SignIn from "./pages/SignIn.jsx";
+import { getCurrentUser } from "./accounts/auth.js";
 
 
 export default function App() {
-  const selectedTheme = localStorage.getItem("app-theme") || "theme-default";
+const [theme, setTheme] = useState("theme-default");
 
   useEffect(() => {
-    document.documentElement.className = selectedTheme;
-  }, [selectedTheme]);
+    // 1️⃣ Check if a user is logged in
+    const user = getCurrentUser();
+
+    // 2️⃣ Use user's saved theme if available, otherwise fallback to localStorage
+    const initialTheme = user?.data?.theme || localStorage.getItem("app-theme") || "theme-default";
+
+    // 3️⃣ Set state & DOM
+    setTheme(initialTheme);
+    document.documentElement.className = initialTheme;
+  }, []);
 
   return (
     <div className="min-h-screen">
       <SideBar />
-      <main>
+      <main >
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/settings" element={<Settings />} />

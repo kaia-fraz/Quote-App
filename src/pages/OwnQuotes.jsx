@@ -35,7 +35,7 @@ export default function OwnQuotes() {
 
                 <div className="flex flex-col justify-center items-center p-4">
                     <h1 className="text-3xl font-bold mb-4">Your Quotes</h1>
-                    <p>Manage your quotes here.</p>
+                    <p className="text-gray-400">Manage your quotes here.</p>
 
                     <div className="mt-4 space-y-4">
                         {quotes.map(quote => (

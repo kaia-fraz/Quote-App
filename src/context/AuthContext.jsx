@@ -8,13 +8,23 @@ export function AuthProvider({ children }) {
   );
 
   useEffect(() => {
-    // keep localStorage in sync if needed
     if (isAuthenticated) localStorage.setItem("auth", "1");
     else localStorage.removeItem("auth");
   }, [isAuthenticated]);
 
   const signIn = () => setIsAuthenticated(true);
-  const signOut = () => setIsAuthenticated(false);
+  const signOut = () => {
+    // Clear auth flag
+    setIsAuthenticated(false);
+    // Clear any current user id if present
+    localStorage.removeItem("currentUser");
+    // Reset theme to default for next (unauthenticated) session
+    localStorage.setItem("app-theme", "theme-default");
+    // Apply immediately
+    document.documentElement.className = "theme-default";
+    // Notify any listeners (App storage listener, etc.)
+    window.dispatchEvent(new Event("storage"));
+  };
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, signIn, signOut }}>

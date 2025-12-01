@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 
 // --- Load users from localStorage ---
-export default function LoadUsers() {
+export default function loadUsers() {
   return JSON.parse(localStorage.getItem("users")) || [];
 }
 
@@ -23,7 +23,9 @@ export function signUp(email, password) {
     email,
     password, 
     data: {
-      quotes: [], // you can attach anything here (favorites, settings, saved items)
+      quotes: [],
+      favorites: [],
+      themes: "theme-default"
     }
   };
 
@@ -55,7 +57,22 @@ export function getCurrentUser() {
   return users.find(u => u.id === id) || null;
 }
 
-// --- Log out ---
+export function updateUserTheme(theme) {
+  const id = localStorage.getItem("currentUser");
+  if (!id) return; 
+
+  const users = loadUsers();
+  const user = users.find(u => u.id === id);
+  if (!user) return;
+
+  user.data.theme = theme; // set new theme
+  saveUsers(users);        // persist it
+}
+
+
+// --- sign out ---
 export function signOut() {
   localStorage.removeItem("currentUser");
+  localStorage.setItem("app-theme", "theme-default");
+  window.dispatchEvent(new Event("storage"));
 }

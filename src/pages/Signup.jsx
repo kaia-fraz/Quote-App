@@ -33,7 +33,7 @@ export default function SignUp() {
       <div className="min-h-screen flex items-center justify-center px-4">
         <form
           onSubmit={handleSubmit}
-          className="w-full max-w-md p-8 rounded-xl bg-blue-500/10 backdrop-blur-md border border-white/10 shadow-xl flex flex-col gap-3"
+          className="w-full max-w-md p-8 rounded-xl bg-blue-500/10 backdrop-blur-md border border-l-blue-500/20 border-t-blue-500/20 border-r-black border-b-black shadow-xl flex flex-col gap-3"
         >
           <h2 className="text-3xl font-bold mb-6 text-center">Create Account</h2>
           {error && <p className="mb-4 text-red-300 text-sm">{error}</p>}

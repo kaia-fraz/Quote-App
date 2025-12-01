@@ -35,6 +35,7 @@ export default function useQuote() {
 
       // ZenQuotes returns an array with one object
       const normalized = {
+        id: Date.now(),
         content: data[0]?.q ?? "",
         author: data[0]?.a ?? "Unknown",
       };
