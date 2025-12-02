@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Home as HomeIcon, Menu, Settings as SettingsIcon, Heart as HeartIcon, X, Plus, CircleUserRound } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -6,6 +6,18 @@ import { Link } from "react-router-dom";
 
 export default function SideBar() {
   const [open, setOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const userId = localStorage.getItem("currentUserId");
+    setIsAuthenticated(!!userId);
+  }, []);
+
+  function signOut() {
+    localStorage.removeItem("currentUserId");
+    setIsAuthenticated(false);
+    alert("Signed out")
+  }
 
   return (
     <>
@@ -35,16 +47,20 @@ export default function SideBar() {
               <Plus className="w-5 h-5" />
               <span >Add</span>
             </Link>
+            {isAuthenticated ? (
               <button
+                onClick={signOut}
                 className="flex items-center gap-2 hover:text-red-300 text-left"
               >
                 <CircleUserRound className="w-5 h-5" />
                 <span>Sign Out</span>
               </button>
+            ) : (
               <Link to="/sign-up" className="flex items-center gap-2 hover:text-gray-300">
                 <CircleUserRound className="w-5 h-5" />
                 <span>Sign Up</span>
               </Link>
+            )}
           </nav>
         </div>
       )}

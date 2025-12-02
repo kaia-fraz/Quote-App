@@ -5,7 +5,16 @@ import { motion } from "framer-motion";
 export default function Favorites() {
     
     const [favorites, setFavorites] = useState([]);
+    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
+    useEffect(() => {
+        setFavorites(storedFavorites);
+    }, []);
+    
+    function removeFavorite(id) {
+        const updatedFavorites = favorites.filter((q) => q.id !== id);
+        localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    }
 
     function handleRemove(id) {
         removeFavorite(id);

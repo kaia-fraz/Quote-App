@@ -17,10 +17,12 @@ export default function QuoteFeed({ onAddFavorite }) {
     }, [quote]);
 
     function handleLike(e) {
+        console.log(quote)
         if (!quote) return;
         e.stopPropagation();
-
+            
         if (liked) {
+            console.log("removed")
             RemoveFavorites(quote.id);
         } else {
             AddFavorites({
@@ -28,6 +30,7 @@ export default function QuoteFeed({ onAddFavorite }) {
                 content: quote.content,
                 author: quote.author,
             });
+            
         }
         setLiked(!liked);
     }

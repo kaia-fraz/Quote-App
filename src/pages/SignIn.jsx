@@ -1,10 +1,47 @@
 import { motion } from "framer-motion";
 import BackgroundWrapper from "../../Style/Background.jsx";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function SignIn() {
- const error = console.log("error");  
+export default function SignIn() { 
+  const [numUsers, setNumUsers] = useState(0);
+  const [userAccounts, setUserAccounts] = useState([]);
+  const [currentUserId, setCurrentUserId] = useState();
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    const storedNumUsers = localStorage.getItem("numUsers" || "0");
+    setNumUsers(storedNumUsers);
+
+    const storedAccounts = JSON.parse(localStorage.getItem("userAccounts") || "[]");
+    setUserAccounts(storedAccounts);
+  }, []);
+
+  function HandleLogin(e){
+    e.preventDefault();
+    const enteredEmail = document.getElementById("email").value;
+    const enteredPassword = document.getElementById("password").value;
+    let loginSuccessful = false;
+
+    for (const account of userAccounts) {
+      if(enteredEmail === account.email && enteredPassword === account.password) {
+        loginSuccessful = true;
+        console.log(account)
+      
+      localStorage.setItem("currentUserId", account.userId);
+      setCurrentUserId(account.userId);
+      break;
+      }
+    }
+
+    if(loginSuccessful) {
+      alert("Login succesful!")
+      navigate("/")
+      window.location.reload();
+    } else {
+      alert("invalid email or password")
+    };
+  }
   return (
     <BackgroundWrapper>
       <motion.div
@@ -13,20 +50,22 @@ export default function SignIn() {
                 transition={{ duration: 0.8, ease: "easeInOut" }}
                  className="min-h-screen flex items-center justify-center px-4">
         <form
+          onSubmit={HandleLogin}
           className="w-full max-w-md p-8  rounded-xl bg-blue-500/10 backdrop-blur-md border border-l-blue-500/20 border-t-blue-500/20 border-r-black border-b-black 
            shadow-xl flex flex-col gap-3 "
         >
           <h2 className="text-3xl font-bold mb-6 text-center">Welcome Back</h2>
-          {error && <p className="mb-4 text-red-300 text-sm">{error}</p>}
           <div className="space-y-4">
             <input
               type="email"
               placeholder="Email"
+              id="email"
               className="w-full px-4 py-3 rounded-md bg-blue-500/10 outline-none border border-white/10 focus:border-blue-400 transition"
               required
             />
             <input
               type="password"
+              id="password"
               placeholder="Password"
               className="w-full px-4 py-3 rounded-md bg-blue-500/10 outline-none border border-white/10 focus:border-blue-400 transition"
               required

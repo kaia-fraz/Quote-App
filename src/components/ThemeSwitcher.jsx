@@ -14,7 +14,7 @@ export default function ThemeSwitcher({ changeTheme }) {
 
 
     return (
-        <div className="fixed top-6 right-6 z-50">
+        <div>
             <button
                 onClick={() => setOpen(!open)}
                 className="p-4 rounded-full backdrop-blur-md shadow-lg hover:bg-blue-500/20 transition"
@@ -25,7 +25,7 @@ export default function ThemeSwitcher({ changeTheme }) {
 
             <div
                 className={`
-                    absolute right-0 mt-3 p-4 rounded-xl 
+                   mt-3 p-4 rounded-xl 
                     backdrop-blur-md border shadow-xl 
                     transition-all duration-300
                     ${open ? "opacity-100 visible translate-y-0" : "opacity-0 invisible translate-y-3"}

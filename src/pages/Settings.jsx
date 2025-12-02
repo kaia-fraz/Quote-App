@@ -6,8 +6,6 @@ import { motion } from "framer-motion";
 export default function Settings() {
     const [theme, setTheme] = useState("theme-default");
 
-
-
     const changeTheme = (name) => {
         setTheme(name);
         document.documentElement.className = name;
@@ -17,7 +15,7 @@ export default function Settings() {
     return (
     <> 
         <BackgroundWrapper>
-            <ThemeSwitcher changeTheme={changeTheme} />
+            
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -26,6 +24,7 @@ export default function Settings() {
             >
                 <h1 className="text-3xl font-bold mb-4">Settings</h1>
                 <p className="text-gray-500">Manage your settings here.</p>
+                <ThemeSwitcher changeTheme={changeTheme} />
             </motion.div>
         </BackgroundWrapper>
     </>
