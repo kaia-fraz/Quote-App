@@ -3,11 +3,14 @@ import { Heart } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { LoadFavorites, AddFavorites, RemoveFavorites } from "../hooks/favorites.js";
+import { useNavigate } from "react-router-dom";
 
 export default function QuoteFeed({ onAddFavorite }) {
     const { quote, loading, error, fetchQuote } = useQuote();
     const [liked, setLiked] = useState(false);
     const quoteID = quote ? quote.id || Date.now() : null;
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         if (!quote || !quote.id) return;
@@ -17,6 +20,11 @@ export default function QuoteFeed({ onAddFavorite }) {
     }, [quote]);
 
     function handleLike(e) {
+        const userId = localStorage.getItem("currentUserId");
+        if (!userId) {
+            navigate("/sign-in");
+            return;
+        }
         console.log(quote)
         if (!quote) return;
         e.stopPropagation();

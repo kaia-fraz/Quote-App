@@ -17,6 +17,7 @@ export default function SideBar() {
     localStorage.removeItem("currentUserId");
     setIsAuthenticated(false);
     alert("Signed out")
+    window.location.reload();
   }
 
   return (

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Palette } from "lucide-react";
 
 export default function ThemeSwitcher({ changeTheme }) {
     const [theme, setTheme] = useState("theme-default");
@@ -14,27 +13,19 @@ export default function ThemeSwitcher({ changeTheme }) {
 
 
     return (
-        <div>
-            <button
-                onClick={() => setOpen(!open)}
-                className="p-4 rounded-full backdrop-blur-md shadow-lg hover:bg-blue-500/20 transition"
-                style={{ color: "var(--text)" }}
-            >
-                <Palette />
-            </button>
-
+        <>
             <div
                 className={`
-                   mt-3 p-4 rounded-xl 
-                    backdrop-blur-md border shadow-xl 
+                   m-3 p-4 rounded-xl 
+                    backdrop-blur-md shadow-xl 
                     transition-all duration-300
-                    ${open ? "opacity-100 visible translate-y-0" : "opacity-0 invisible translate-y-3"}
+                    bg-blue-500/10 
+                    border border-l-blue-500/20
+                     border-t-blue-500/20 
+                     border-r-black 
+                     border-b-black hover:bg-blue-500/20
+                    
                 `}
-                style={{
-                    background: "var(--cardOpaque)",
-                    borderColor: "var(--border)",
-                    color: "var(--text)",
-                }}
             >   <button className="block w-full text-left p-2 hover:bg-white/20 rounded" onClick={() => handleThemeSelect("theme-default")}>
                     Default
                 </button>
@@ -51,6 +42,6 @@ export default function ThemeSwitcher({ changeTheme }) {
                     Blue
                 </button>
             </div>
-        </div>
+        </>
     );
 }

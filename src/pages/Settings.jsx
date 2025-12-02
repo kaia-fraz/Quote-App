@@ -22,9 +22,10 @@ export default function Settings() {
                 transition={{ duration: 0.8, ease: "easeInOut" }}
                 className="flex flex-col items-center"
             >
-                <h1 className="text-3xl font-bold mb-4">Settings</h1>
-                <p className="text-gray-500">Manage your settings here.</p>
+                <h1 className="text-3xl font-bold mb-4">Themes</h1>
                 <ThemeSwitcher changeTheme={changeTheme} />
+                <p className="text-gray-500">Change your energy.</p>
+                
             </motion.div>
         </BackgroundWrapper>
     </>

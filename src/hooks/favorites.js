@@ -1,23 +1,28 @@
 export function LoadFavorites() {
     try {
-        return JSON.parse(localStorage.getItem("favorites")) || [];
+        const userId = localStorage.getItem("currentUserId");
+        if (!userId) return [];
+        const key = `likedQuotes_user_${userId}`;
+        return JSON.parse(localStorage.getItem(key)) || [];
     } catch {
         return [];
     }
 }
 
 export function SaveFavorites(favs) {
-    localStorage.setItem("favorites", JSON.stringify(favs))
+    const userId = localStorage.getItem("currentUserId");
+    if (!userId) return;
+    const key = `likedQuotes_user_${userId}`;
+    localStorage.setItem(key, JSON.stringify(favs));
 }
 
 export function AddFavorites(quote) {
-   const favs =  LoadFavorites();
+   const favs = LoadFavorites();
 
    if(!favs.some(q => q.id === quote.id)) {
     favs.unshift(quote);
     SaveFavorites(favs);
   }
-
 }
 
 export function RemoveFavorites(id) {

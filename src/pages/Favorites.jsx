@@ -1,24 +1,30 @@
 import BackgroundWrapper from "../../Style/Background.jsx";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 export default function Favorites() {
-    
     const [favorites, setFavorites] = useState([]);
-    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const [currentUserId, setCurrentUserId] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
+        const userId = localStorage.getItem("currentUserId");
+        if (!userId) {
+            navigate("/sign-in");
+            return;
+        }
+        setCurrentUserId(userId);
+        const storedFavorites = JSON.parse(localStorage.getItem(`likedQuotes_user_${userId}`) || "[]");
         setFavorites(storedFavorites);
-    }, []);
-    
-    function removeFavorite(id) {
-        const updatedFavorites = favorites.filter((q) => q.id !== id);
-        localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-    }
+    }, [navigate]);
 
     function handleRemove(id) {
-        removeFavorite(id);
-        setFavorites((prev) => prev.filter((q) => q.id !== id));
+        if (!currentUserId) return;
+        
+        const updatedFavorites = favorites.filter((q) => q.id !== id);
+        setFavorites(updatedFavorites);
+        localStorage.setItem(`likedQuotes_user_${currentUserId}`, JSON.stringify(updatedFavorites));
     }
     return (
     <> 
