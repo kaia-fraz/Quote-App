@@ -1,67 +1,40 @@
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import signUp from "../accounts/auth.js";
+import { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import BackgroundWrapper from "../../Style/Background.jsx";
 
+
 export default function SignUp() {
-  const [form, setForm] = useState({ email: "", password: "", confirmPassword: "" });
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setError(null);
-    if (form.password !== form.confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
-    const result = signUp(form.email, form.password);
-
-    if (result.error) {
-      setError(result.error);
-      return;
-    }
-    navigate("/sign-in");
-  };
-
+ const error = console.log("error");
   return (
     <BackgroundWrapper>
-      <div className="min-h-screen flex items-center justify-center px-4">
+
+      <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, ease: "easeInOut" }} 
+                className="min-h-screen flex items-center justify-center px-4">
         <form
-          onSubmit={handleSubmit}
           className="w-full max-w-md p-8 rounded-xl bg-blue-500/10 backdrop-blur-md border border-l-blue-500/20 border-t-blue-500/20 border-r-black border-b-black shadow-xl flex flex-col gap-3"
         >
           <h2 className="text-3xl font-bold mb-6 text-center">Create Account</h2>
           {error && <p className="mb-4 text-red-300 text-sm">{error}</p>}
           <div className="space-y-4">
             <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={form.email}
-              onChange={handleChange}
+            type="email"
+            placeholder="Email"
               className="w-full px-4 py-3 rounded-md bg-blue-500/10 outline-none border border-white/10 focus:border-blue-400 transition"
               required
             />
             <input
               type="password"
-              name="password"
               placeholder="Password"
-              value={form.password}
-              onChange={handleChange}
               className="w-full px-4 py-3 rounded-md bg-blue-500/10 outline-none border border-white/10 focus:border-blue-400 transition"
               required
             />
             <input
               type="password"
-              name="confirmPassword"
               placeholder="Confirm Password"
-              value={form.confirmPassword}
-              onChange={handleChange}
               className="w-full px-4 py-3 rounded-md bg-blue-500/10 outline-none border border-white/10 focus:border-blue-400 transition"
               required
             />
@@ -76,7 +49,7 @@ export default function SignUp() {
             Already have an account? <Link to="/sign-in" className="text-blue-300 hover:text-blue-200 underline">Sign In</Link>
           </p>
         </form>
-      </div>
+      </motion.div>
     </BackgroundWrapper>
   );
 }

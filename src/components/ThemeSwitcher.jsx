@@ -1,18 +1,16 @@
 import { useState } from "react";
 import { Palette } from "lucide-react";
-import { getCurrentUser, updateUserTheme } from "../accounts/auth";
 
 export default function ThemeSwitcher({ changeTheme }) {
-    const user = getCurrentUser();
-    const [theme, setTheme] = useState(user?.data?.theme || "theme-default");
+    const [theme, setTheme] = useState("theme-default");
     const [open, setOpen] = useState(false);
 
-     function handleThemeSelect(themeName) {
-    setTheme(themeName);
-    localStorage.setItem("app-theme", themeName);
-    if (user) updateUserTheme(themeName);
-    setOpen(false);
-  }
+    function handleThemeSelect(themeName) {
+        setTheme(themeName);
+        localStorage.setItem("app-theme", themeName);
+        if (changeTheme) changeTheme(themeName);
+        setOpen(false);
+    }
 
 
     return (
@@ -37,19 +35,19 @@ export default function ThemeSwitcher({ changeTheme }) {
                     borderColor: "var(--border)",
                     color: "var(--text)",
                 }}
-            >   <button className="block w-full text-left p-2 hover:bg-white/20 rounded" onClick={() => changeTheme("theme-default")}>
+            >   <button className="block w-full text-left p-2 hover:bg-white/20 rounded" onClick={() => handleThemeSelect("theme-default")}>
                     Default
                 </button>
-                <button className="block w-full text-left p-2 hover:bg-white/20 rounded" onClick={() => changeTheme("theme-purple")}>
+                <button className="block w-full text-left p-2 hover:bg-white/20 rounded" onClick={() => handleThemeSelect("theme-purple")}>
                     Purple
                 </button>
-                <button className="block w-full text-left p-2 hover:bg-white/20 rounded" onClick={() => changeTheme("theme-green")}>
+                <button className="block w-full text-left p-2 hover:bg-white/20 rounded" onClick={() => handleThemeSelect("theme-green")}>
                     Green
                 </button>
-                <button className="block w-full text-left p-2 hover:bg-white/20 rounded" onClick={() => changeTheme("theme-red")}>
+                <button className="block w-full text-left p-2 hover:bg-white/20 rounded" onClick={() => handleThemeSelect("theme-red")}>
                     Red
                 </button>
-                <button className="block w-full text-left p-2 hover:bg-white/20 rounded" onClick={() => changeTheme("theme-blue")}>
+                <button className="block w-full text-left p-2 hover:bg-white/20 rounded" onClick={() => handleThemeSelect("theme-blue")}>
                     Blue
                 </button>
             </div>

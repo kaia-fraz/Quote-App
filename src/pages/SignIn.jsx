@@ -1,42 +1,18 @@
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import BackgroundWrapper from "../../Style/Background.jsx";
-import signIn from "../accounts/auth.js";
-import { useAuth } from "../context/AuthContext.jsx";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function SignIn() {
-  const [form, setForm] = useState({ email: "", password: "" });
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
-  const { signIn: authenticate } = useAuth();
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setError(null);
-    // Fake auth placeholder; replace with real validation
-    if (!form.email || !form.password) {
-      setError("Email and password are required");
-      return;
-    }
-    const result = signIn(form.email, form.password);
-
-    if (result.error) {
-      setError(result.error);
-      return;
-    }
-    authenticate();
-    navigate("/");
-  };
-
+ const error = console.log("error");  
   return (
     <BackgroundWrapper>
-      <div className="min-h-screen flex items-center justify-center px-4">
+      <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
+                 className="min-h-screen flex items-center justify-center px-4">
         <form
-          onSubmit={handleSubmit}
           className="w-full max-w-md p-8  rounded-xl bg-blue-500/10 backdrop-blur-md border border-l-blue-500/20 border-t-blue-500/20 border-r-black border-b-black 
            shadow-xl flex flex-col gap-3 "
         >
@@ -45,19 +21,13 @@ export default function SignIn() {
           <div className="space-y-4">
             <input
               type="email"
-              name="email"
               placeholder="Email"
-              value={form.email}
-              onChange={handleChange}
               className="w-full px-4 py-3 rounded-md bg-blue-500/10 outline-none border border-white/10 focus:border-blue-400 transition"
               required
             />
             <input
               type="password"
-              name="password"
               placeholder="Password"
-              value={form.password}
-              onChange={handleChange}
               className="w-full px-4 py-3 rounded-md bg-blue-500/10 outline-none border border-white/10 focus:border-blue-400 transition"
               required
             />
@@ -72,7 +42,7 @@ export default function SignIn() {
             Don't have an account? <Link to="/sign-up" className="text-blue-300 hover:text-blue-200 underline">Sign Up</Link>
           </p>
         </form>
-      </div>
+      </motion.div>
     </BackgroundWrapper>
   );
 }

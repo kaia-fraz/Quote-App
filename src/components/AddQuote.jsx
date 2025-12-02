@@ -1,13 +1,11 @@
 import {useState} from "react";
 import { Plus, X } from "lucide-react";
-import { getCurrentUser } from "../accounts/auth";
 
 export default function AddQuote({ onAdd }) {
     const [open, setOpen] = useState(false);
     const [content, setContent] = useState("");
     const [author, setAuthor] = useState("");
     const [error, setError] = useState("");
-    const user = getCurrentUser();
 
     function handleSubmit(e) {
         e.preventDefault();

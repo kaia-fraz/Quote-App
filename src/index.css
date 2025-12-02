@@ -3,11 +3,11 @@
 
 
 .theme-default {
-    --bg1: #2f2d68;      /* gradient start */
-    --bg2: #070422;      /* gradient end   */
+    --bg1: #2f2d68;  
+    --bg2: #0b0a23;    
     --text: white; 
     --card: #234dbf;
-    --cardOpaque: #2866d933; /* color + opacity */
+    --cardOpaque: #2866d933; 
     --border: rgba(255,255,255,0.1);
     --hover: #3b82f6;
 }

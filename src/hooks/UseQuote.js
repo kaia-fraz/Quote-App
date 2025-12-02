@@ -33,7 +33,6 @@ export default function useQuote() {
 
       const data = await res.json();
 
-      // ZenQuotes returns an array with one object
       const normalized = {
         id: Date.now(),
         content: data[0]?.q ?? "",

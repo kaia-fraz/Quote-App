@@ -1,19 +1,12 @@
 import BackgroundWrapper from "../../Style/Background";
 import ThemeSwitcher from "../components/ThemeSwitcher";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Settings() {
     const [theme, setTheme] = useState("theme-default");
 
-    useEffect(() => {
-        const saved = localStorage.getItem("app-theme");
-        if (saved) {
-            setTheme(saved);
-            document.documentElement.className = saved;
-        } else {
-            document.documentElement.className = "theme-default";
-        }
-    }, []);
+
 
     const changeTheme = (name) => {
         setTheme(name);
@@ -25,8 +18,15 @@ export default function Settings() {
     <> 
         <BackgroundWrapper>
             <ThemeSwitcher changeTheme={changeTheme} />
-            <h1 className="text-3xl font-bold mb-4">Settings</h1>
-            <p className="text-gray-400">Manage your settings here.</p>
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
+                className="flex flex-col items-center"
+            >
+                <h1 className="text-3xl font-bold mb-4">Settings</h1>
+                <p className="text-gray-500">Manage your settings here.</p>
+            </motion.div>
         </BackgroundWrapper>
     </>
     );

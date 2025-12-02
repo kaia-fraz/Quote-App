@@ -1,27 +1,35 @@
-import {LoadFavorites, RemoveFavorites} from "../hooks/favorites.js";
 import BackgroundWrapper from "../../Style/Background.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 export default function Favorites() {
-    const [favorites, setFavorites] = useState(LoadFavorites() || []);
+    
+    const [favorites, setFavorites] = useState([]);
+
 
     function handleRemove(id) {
-        RemoveFavorites(id);
-        setFavorites(LoadFavorites());
+        removeFavorite(id);
+        setFavorites((prev) => prev.filter((q) => q.id !== id));
     }
     return (
     <> 
         <BackgroundWrapper>
-            <h1 className="text-3xl font-bold mb-4">Favorites</h1>
-            {favorites.length === 0 && (
-                <p className="text-gray-500">You haven't liked any quotes yet.</p>
-            )}
-            {favorites.map(q => (
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
+                className="flex flex-col justify-center items-center p-4"
+            >
+                <h1 className="text-3xl font-bold mb-4">Favorites</h1>
+                {favorites.length === 0 && (
+                    <p className="text-gray-500">You haven't liked any quotes yet.</p>
+                )}
+                {favorites.map(q => (
             <div
                 key={q.id}
-                className="p-4 bg-white border rounded-xl shadow-sm space-y-2"
+                className="flex flex-col justify-center items-center p-6 mx-5 rounded-xl cursor-pointer backdrop-blur-md bg-blue-500/10 border border-l-blue-500/20 border-t-blue-500/20 border-r-black border-b-black hover:bg-blue-500/20 transition shadow-xl"
                 >
-                <p className="text-lg text-gray-800">{q.content}</p>
+                <p className="text-lg text-gray-400">{q.content}</p>
                 <p className="text-right text-sm text-gray-500">— {q.author}</p>
 
                 <button
@@ -32,6 +40,7 @@ export default function Favorites() {
                 </button>
             </div>
             ))}
+            </motion.div>
         </BackgroundWrapper>
     </>
     );
