@@ -1,56 +1,43 @@
 import {useState} from "react";
 import { Plus, X } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { AddOwnQuote } from "../hooks/ownQuotes.js";
 
 export default function AddQuote({ onAdd }) {
     const [open, setOpen] = useState(false);
     const [content, setContent] = useState("");
     const [author, setAuthor] = useState("");
     const [error, setError] = useState("");
-    const userId = localStorage.getItem("currentUserId");
-    const navigate = useNavigate();
-
-    function addOwnQuote(quote) {
-        const userQuotes = JSON.parse(localStorage.getItem(`quotes_${userId}`)) || [];
-        userQuotes.push(quote);
-        localStorage.setItem(`quotes_${userId}`, JSON.stringify(userQuotes));
-    }
 
     function handleSubmit(e) {
         e.preventDefault();
-    const trimmedContent = content.trim();
-    const trimmedAuthor = author.trim() || "Unknown";
+        const trimmedContent = content.trim();
+        const trimmedAuthor = author.trim() || "Unknown";
 
-    if (!trimmedContent) {
-        setError("Quote content cannot be empty.");
-        return;
+        if (!trimmedContent) {
+            setError("Quote content cannot be empty.");
+            return;
+        }
+
+        const newQuote = { 
+            id: Date.now().toString(),
+            content: trimmedContent,
+            author: trimmedAuthor,
+        }
+
+        // Save to localStorage per user
+        AddOwnQuote(newQuote);
+        
+        // Update parent component state
+        onAdd(newQuote);
+
+        setContent("");
+        setAuthor("");
+        setError("");
+        setOpen(false);
     }
-
-    const newQuote = { 
-        id: Date.now().toString(),
-        content: trimmedContent,
-        author: trimmedAuthor,
-    }
-
-    onAdd(newQuote);
-
-    setContent("");
-    setAuthor("");
-    setError("");
-    setOpen(false);
-};
-function handleAdd() {
-    const userId = localStorage.getItem("currentUserId");
-    if (!userId) {
-        navigate("/sign-in");
-        return;
-    }
-}
 
     return (
-        <div 
-        onClick = {handleAdd}
-        className="relative" >
+        <div className="relative">
             <button
                 onClick={() => setOpen(!open)}
                 className="absolute top-4 right-4 p-3 transition z-50 rounded-full shadow-lg hover:bg-blue-500/20"

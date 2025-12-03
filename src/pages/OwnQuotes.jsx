@@ -3,15 +3,30 @@ import OwnQuoteCard from "../components/OwnQuoteCard.jsx";
 import BackgroundWrapper from "../../Style/Background.jsx";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { LoadOwnQuotes, RemoveOwnQuote } from "../hooks/ownQuotes.js";
+import { useNavigate } from "react-router-dom";
 
 export default function OwnQuotes() {
-
     const [quotes, setQuotes] = useState([]);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const userId = localStorage.getItem("currentUserId");
+        if (!userId) {
+            navigate("/sign-in");
+            return;
+        }
+        // Load user's own quotes on mount
+        const userQuotes = LoadOwnQuotes();
+        setQuotes(userQuotes);
+    }, [navigate]);
 
     function handleAddQuote(newQuote){
         setQuotes((prev) => [...prev, newQuote]);
     }
+    
     function handleRemove(id) {
+        RemoveOwnQuote(id);
         setQuotes((prev) => prev.filter(q => q.id !== id));
     }
         
